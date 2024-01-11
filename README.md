@@ -1,0 +1,2 @@
+# backendnodecqrs
+NodeJS CQRS MySQL
