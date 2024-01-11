@@ -1,2 +1,2 @@
 # backendnodecqrs
-NodeJS CQRS MySQL
+NodeJS NestJS CQRS MySQL
