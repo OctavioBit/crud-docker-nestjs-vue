@@ -1,26 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePerroDto } from './dto/create-perro.dto';
-import { UpdatePerroDto } from './dto/update-perro.dto';
+
+export interface Perro {
+    id: number;
+    nombre: string;
+    edad: number;
+}
 
 @Injectable()
 export class PerrosService {
-  create(createPerroDto: CreatePerroDto) {
-    return 'This action adds a new perro';
-  }
+    private readonly perros : Perro[] = [];
 
-  findAll() {
-    return `This action returns all perros`;
-  }
+    create(nombre: string, edad: number) : Perro {
 
-  findOne(id: number) {
-    return `This action returns a #${id} perro`;
-  }
+        let perro = {id: this.perros.length + 1,nombre: nombre, edad:edad};
+        this.perros.push(perro);
+        return perro;
+    }
 
-  update(id: number, updatePerroDto: UpdatePerroDto) {
-    return `This action updates a #${id} perro`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} perro`;
-  }
+    findById(id: number) : Perro {
+        return this.perros.find(perro => perro.id == id);
+    }
 }
