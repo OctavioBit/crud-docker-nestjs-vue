@@ -12,7 +12,12 @@ export class PerrosService {
 
     create(nombre: string, edad: number) : Perro {
 
-        let perro = {id: this.perros.length + 1,nombre: nombre, edad:edad};
+        let perro = {
+                        id: this.perros.length + 1,
+                        nombre: nombre, 
+                        edad:edad
+                    };
+                    
         this.perros.push(perro);
         return perro;
     }
