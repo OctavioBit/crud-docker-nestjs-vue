@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+const PerroModel = require('/src/backendnodecqrs/src/data/models/perro.js');
 
 export interface Perro {
     id: number;
@@ -12,14 +13,16 @@ export class PerrosService {
 
     create(nombre: string, edad: number) : Perro {
 
-        let perro = {
-                        id: this.perros.length + 1,
-                        nombre: nombre, 
-                        edad:edad
-                    };
-                    
-        this.perros.push(perro);
-        return perro;
+        var unPerro = {
+            nombre: nombre,
+            edad: edad,
+            esterilizado: true
+        };
+         
+        //TypeError: PerroModel.create is not a function
+        var nuevoPerro = PerroModel.create(unPerro);
+       
+        return nuevoPerro;
     }
 
     findById(id: number) : Perro {
