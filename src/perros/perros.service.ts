@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-const PerroModel = require('/src/backendnodecqrs/src/data/models/perro.js');
+//import PerroModel from '../data/models/perro';
 
 export interface Perro {
     id: number;
@@ -20,7 +20,7 @@ export class PerrosService {
         };
          
         //TypeError: PerroModel.create is not a function
-        var nuevoPerro = PerroModel.create(unPerro);
+        var nuevoPerro = null;//PerroModel.create(unPerro);
        
         return nuevoPerro;
     }
