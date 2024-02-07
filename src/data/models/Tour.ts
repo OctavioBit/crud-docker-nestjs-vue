@@ -40,7 +40,10 @@ class Tour extends Model {
     declare starting_date: Date;
 
     @Column({
-        type: 
-    })https://www.youtube.com/watch?v=J8l21W9dEk4
-    6:21
+        type: DataType.DECIMAL(10,2)
+    })
+    declare price: number
+    
 }
+
+export default Tour;

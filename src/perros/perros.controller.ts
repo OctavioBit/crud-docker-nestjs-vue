@@ -22,4 +22,6 @@ export class PerrosController {
         const post = await this.queryBus.execute(query);
         return post;
     }
+
+    
 }

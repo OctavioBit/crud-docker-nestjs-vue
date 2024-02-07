@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-//import PerroModel from '../data/models/perro';
+import Connection from '../data/connection';
+import Travel from '../data/models/Travel';
 
 export interface Perro {
     id: number;
@@ -27,5 +28,15 @@ export class PerrosService {
 
     findById(id: number) : Perro {
         return this.perros.find(perro => perro.id == id);
+    }
+
+    crearTravel(name: string, number_of_days: number){
+        Connection.models;
+        Travel.sync();
+        Travel.create({name: name, number_of_days: number_of_days, createdAt: new Date(), updatedAt: new Date()});
+    }
+
+    getAllTravels(){
+        return Travel.findAll();
     }
 }

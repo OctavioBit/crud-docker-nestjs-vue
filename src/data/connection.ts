@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
 
 const sequelize = new Sequelize({
-    database: process.env.DB_NAME,
+    database: 'arq_base',
     dialect: "mysql",
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
+    username: 'root',
+    password: '227733436mysql',
+    host: 'localhost',
+    port: 3306,
     models: [__dirname + "/models"],
 });
 

@@ -9,7 +9,6 @@ import {
 import Tour from "./Tour";
 
 @Table({
-    timestamps:true,
     tableName: "TBL_TRAVELS",
     modelName: "Travel"
 })
@@ -35,5 +34,7 @@ class Travel extends Model {
     @HasMany(() => Tour)
     declare tours: Tour[];
 }
+
+
 
 export default Travel;

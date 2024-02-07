@@ -8,7 +8,7 @@ export class GetPerroQueryHandler implements IQueryHandler<GetPerroQuery> {
 
   async execute(query: GetPerroQuery) {
     const { id } = query;
-    const perro = await this.perroService.findById(id);
+    const perro = await this.perroService.getAllTravels();
 
     if(perro == null)      
       return 'No hay perro con ese id';

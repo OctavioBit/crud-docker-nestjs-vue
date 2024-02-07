@@ -8,7 +8,7 @@ export class CrearPerroCommandHandler implements ICommandHandler<CrearPerroComma
 
   async execute(command: CrearPerroCommand) {
     const { nombre, edad } = command;
-    const perro = await this.perroService.create(nombre, edad);
+    const perro = await this.perroService.crearTravel(nombre, edad);
     return perro;
   }
 }
