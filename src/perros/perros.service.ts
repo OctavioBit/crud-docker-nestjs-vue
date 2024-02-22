@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
-//import PerroModel from '../data/models/perro';
+import { PrismaClient } from '@prisma/client'; 
+
+const prisma = new PrismaClient();
 
 export interface Perro {
     id: number;
@@ -27,5 +29,12 @@ export class PerrosService {
 
     findById(id: number) : Perro {
         return this.perros.find(perro => perro.id == id);
+    }
+
+    findAll() : void {
+
+        const allUsers = prisma["user"].findMany();
+
+        allUsers.then(res => console.log(res));
     }
 }
