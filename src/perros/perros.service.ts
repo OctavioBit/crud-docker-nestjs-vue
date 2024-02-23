@@ -31,6 +31,15 @@ export class PerrosService {
         return this.perros.find(perro => perro.id == id);
     }
 
+    async crearUser(nombre: string, mail:string) : Promise<void> {
+        const user = await prisma.user.create({
+            data: {
+                email: mail,
+                name: nombre,
+            },
+        });
+    }
+
     findAll() : void {
 
         const allUsers = prisma["user"].findMany();
