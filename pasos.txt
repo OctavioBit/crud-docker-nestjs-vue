@@ -1,0 +1,17 @@
+1) npx nest g co peliculas
+Crea el controller y el directorio peliculas si no existe
+2) npx nest g mo peliculas
+Crea el modulo peliculas
+3) npx nest g s peliculas
+Crea el servicio peliculas
+
+! Todo lo anterior actualiza app.module.ts
+
+4) Crear el modelo en schema.prisma
+
+Generales:
+- npx prisma format Formatea el codigo y puede agregar algo que uno se haya olvidado, como una relacion de una tabla a otra
+
+5) npx prisma migrate dev --name modelo_peliculas
+
+6) Crear los query/command handlers
