@@ -1,6 +1,6 @@
 import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
 import { GetPeliculasQuery } from '../querys/getPeliculasQuery.query';
-import { PeliculasService } from '../peliculas.service';
+import { PeliculasService } from '../domain/peliculas.service';
 
 @QueryHandler(GetPeliculasQuery)
 export class GetPeliculasQueryHandler implements IQueryHandler<GetPeliculasQuery> {

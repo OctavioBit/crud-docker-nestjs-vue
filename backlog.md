@@ -1,0 +1,1 @@
+* Tests automaticos, puede ser con Jest
