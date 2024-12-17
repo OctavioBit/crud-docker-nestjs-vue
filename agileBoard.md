@@ -2,8 +2,9 @@ PENDIENTE
 * Tests automaticos, puede ser con Jest
 
 EN CURSO
-* Patron Repository  + Servicio
+* Dockerizar
 
 TERMINADOS
 
 * CQRS
+* Patron Repository  + Servicio

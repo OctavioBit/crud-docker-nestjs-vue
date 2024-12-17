@@ -18,11 +18,7 @@ services:
    build: 
      context: .
      dockerfile: ./docker/nodejs/Dockerfile   
+   ports:
+    - "5000:5000"
    depends_on:
      - mysqldb
-#   stdin_open: true
-#   tty: true
-
-#volumes: 
-#  db-config:
-#  db-data:

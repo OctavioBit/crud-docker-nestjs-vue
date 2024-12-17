@@ -16,3 +16,12 @@ Generales:
 
 6) Crear los query/command handlers
 
+
+#Docker
+
+Saber la ip del contenedor:
+docker network ls
+docker network inspect <nombre_de_la_red>
+http://172.18.0.3:3000/coco
+
+docker system prune -a --volumes
