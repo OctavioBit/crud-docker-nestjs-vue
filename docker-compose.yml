@@ -1,33 +1,28 @@
-version: '3'
+#version: "3.9"
 
-services:
-  # Define el servicio para la aplicación Node.js
-  app:
-    build: 
-      context: .
-      dockerfile: ./docker/nodejs/Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      - DB_HOST=mysql
-      - DB_USER=root
-      - DB_PASSWORD=rootpassword
-      - DB_NAME=mydatabase
-    depends_on:
-      - mysql
+services: 
+ mysqldb:
+   image: mysql   
+   env_file: ./.env
+   environment:
+     MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+     MYSQL_DATABASE: $MYSQL_DATABASE
+   ports:
+     - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
+#   volumes: 
+#     - db-config:/etc/mysql
+#     - db-data:/var/lib/mysql
+#     - ./db/backup/files/:/data_backup/data
+      
+ app:
+   build: 
+     context: .
+     dockerfile: ./docker/nodejs/Dockerfile   
+   depends_on:
+     - mysqldb
+#   stdin_open: true
+#   tty: true
 
-  # Define el servicio para la base de datos MySQL
-  mysql:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-
-# Define los volúmenes para la persistencia de datos
-volumes:
-  db_data:
+#volumes: 
+#  db-config:
+#  db-data:

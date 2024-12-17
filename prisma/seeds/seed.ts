@@ -4,6 +4,7 @@ const prisma = new PrismaClient()
 
 async function doSeed() {
 
+  /*
   const WhatWeDoInTheShadows = await prisma.pelicula.upsert({
     where: {},
     update: {},
@@ -19,6 +20,7 @@ async function doSeed() {
   })
 
   console.log({ WhatWeDoInTheShadows })
+  */
 }
 
 doSeed()
