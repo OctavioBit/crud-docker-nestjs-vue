@@ -7,6 +7,6 @@ export class AppService {
   }
 
   getCoquits(): string {
-    return "Hola Sr. Coquits"
+    return "Hola Sr. Coquits, Ostia!"
   }
 }
