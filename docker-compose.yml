@@ -1,24 +1,38 @@
-#version: "3.9"
-
 services: 
- mysqldb:
+ database:
    image: mysql   
    env_file: ./.env
+   restart: always   
    environment:
-     MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-     MYSQL_DATABASE: $MYSQL_DATABASE
+     MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+     MYSQL_DATABASE: $DB_NAME
    ports:
-     - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
+     - $DB_LOCAL_PORT:$DB_DOCKER_PORT
+   networks:
+      main:
+        ipv4_address: 192.168.1.100
+     
 #   volumes: 
 #     - db-config:/etc/mysql
 #     - db-data:/var/lib/mysql
 #     - ./db/backup/files/:/data_backup/data
       
- app:
+ server:
    build: 
      context: .
      dockerfile: ./docker/nodejs/Dockerfile   
+   restart: always
    ports:
     - "5000:5000"
    depends_on:
-     - mysqldb
+     - database
+   networks:     
+      main:
+        ipv4_address: 192.168.1.101
+
+networks:
+  main:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
