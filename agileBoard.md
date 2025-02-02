@@ -1,9 +1,10 @@
 PENDIENTE
-* Dockerizar front end
+* Auto update de archivos
+* Debugger
 * Tests automaticos, puede ser con Jest
 
 EN CURSO
-* Auto update de archivos
+* Dockerizar front end
 
 TERMINADOS
 

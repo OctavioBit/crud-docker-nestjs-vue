@@ -1,4 +1,4 @@
-services: 
+services:
  database:
    image: mysql   
    env_file: ./.env   
@@ -19,3 +19,13 @@ services:
     - "5000:5000"
    depends_on:
      - database
+
+ frontend:
+   build:
+     context: ./frontend
+     dockerfile: ../docker/frontend/Dockerfile      
+   volumes:     
+     - .:/usr/src/app/frontend
+     - /usr/src/app/frontend/node_modules
+   ports:
+    - "5001:5001"
