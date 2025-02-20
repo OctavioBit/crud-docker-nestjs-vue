@@ -1,7 +1,7 @@
 FROM node:20.14
 
 # Create app directory
-WORKDIR /usr/src/app/frontend
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
