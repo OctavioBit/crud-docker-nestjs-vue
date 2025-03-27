@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Usuarios</h1>
+        <h1>Listado de Usuarios</h1>
         <h1>Este es el usuario {{ $route.params.id }}</h1>
         <alertas tipo="success" 
                  v-if="visible"

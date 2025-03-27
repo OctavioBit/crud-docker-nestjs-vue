@@ -1,13 +1,13 @@
 PENDIENTE
-* Auto update de archivos
-* Debugger
-* Tests automaticos, puede ser con Jest
+* Tests automaticos, puede ser con Jest o Vite o eso que tiene vuetify 3 
 
 EN CURSO
-* Dockerizar front end
+* Debugger -> https://blog.itaywol.com/dockerizing-nestjs-application-and-debugging
 
 TERMINADOS
 
+* Dockerizar front end
 * Dockerizar Back + DB
 * CQRS
 * Patron Repository  + Servicio
+* Auto update de archivos del backend
