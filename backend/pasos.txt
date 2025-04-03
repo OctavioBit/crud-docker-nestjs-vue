@@ -12,7 +12,7 @@ Crea el servicio peliculas
 Generales:
 - npx prisma format Formatea el codigo y puede agregar algo que uno se haya olvidado, como una relacion de una tabla a otra
 
-5) npx prisma migrate dev --name modelo_peliculas
+5) sudo docker exec -it backendnodecqrs-backend-1 npx prisma migrate dev
 
 6) Crear los query/command handlers
 

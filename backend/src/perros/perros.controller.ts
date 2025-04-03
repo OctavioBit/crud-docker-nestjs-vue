@@ -8,8 +8,8 @@ export class PerrosController {
     constructor(private readonly commandBus: CommandBus,
                 private readonly queryBus: QueryBus) { }
 
-    @Post('crearPerro')
-    async crearPerro(@Body() body: { nombre:string; edad: number }) {        
+    @Post('guardarPerro')
+    async guardarPerro(@Body() body: { nombre:string; edad: number }) {        
         const { nombre, edad } = body;
         const command = new CrearPerroCommand(nombre, edad);
         const perro = await this.commandBus.execute(command);
