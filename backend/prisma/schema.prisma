@@ -42,3 +42,14 @@ model Pelicula {
 
   @@map("TBL_PELICULAS")
 }
+
+model Perro {
+
+  id              Int             @id @default(autoincrement()) @map("ID_PERRO")  
+  nombre          String          @map("NOMBRE")
+  sexo            String          @map("SEXO")
+  esterilizado    Boolean         @map("ESTERILIZADO")
+  fechaNacimiento DateTime        @map("FECHA_NACIMIENTO")
+
+  @@map("TBL_PERROS")
+}
