@@ -1,7 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client'; 
-
-const prisma = new PrismaClient();
 
 export interface Perro {
     id: number;
@@ -32,18 +29,18 @@ export class PerrosService {
     }
 
     async crearUser(nombre: string, mail:string) : Promise<void> {
-        const user = await prisma.user.create({
+        /*const user = await prisma.user.create({
             data: {
                 email: mail,
                 name: nombre,
             },
-        });
+        });*/
     }
 
     findAll() : void {
-
+/*
         const allUsers = prisma["user"].findMany();
 
-        allUsers.then(res => console.log(res));
+        allUsers.then(res => console.log(res));*/
     }
 }

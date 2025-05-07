@@ -1,14 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Pelicula, PrismaClient } from '@prisma/client'; 
-
-const prisma = new PrismaClient();
 
 @Injectable()
 export class PeliculasService { 
 
-    async findAll(): Promise<Pelicula[]> {
+    async findAll(): Promise<string[]> {
 
-        const peliculas = await prisma["pelicula"].findMany();
+        const peliculas = ["Pelicula 1","Pelicula 2"];
 
         return peliculas;
     }
