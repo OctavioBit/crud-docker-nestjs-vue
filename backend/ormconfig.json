@@ -1,9 +1,0 @@
-{
-    "type": "mysql",
-    "host": "localhost",
-    "port": 5432,
-    "username": "root",
-    "database": "227733436mysql",
-    "synchronize": true,
-    "logging": false    
-}

@@ -9,5 +9,7 @@ RUN npm install
 COPY . . 
 EXPOSE 5000
 
-RUN npx prisma generate
+RUN npm i typeorm reflect-metadata --save
+
+#RUN npx prisma generate
 CMD [ "npm", "run", "start:debug" ]

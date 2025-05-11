@@ -9,18 +9,19 @@ services:
    ports:
      - $DB_LOCAL_PORT:$DB_DOCKER_PORT
 
- backend:
-   build:
-     context: ./backend
-     dockerfile: ../docker/backend/Dockerfile      
-   volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
-   ports:
-    - "5000:5000"   
-    - "9229:9229"
-   depends_on:
-     - database
+#Se comenta hasta resolver TypeORM
+# backend:
+#   build:
+#     context: ./backend
+#     dockerfile: ../docker/backend/Dockerfile      
+#   volumes:
+#      - ./backend:/usr/src/app
+#      - /usr/src/app/node_modules
+#   ports:
+#    - "5000:5000"   
+#    - "9229:9229"
+#   depends_on:
+#     - database
 
  frontend:
    build:
