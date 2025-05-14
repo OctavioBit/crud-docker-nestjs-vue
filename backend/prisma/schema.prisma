@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:227733436mysql@172.18.0.2:3306/kamaebackdb?schema=public&allowPublicKeyRetrieval=true"
+  url      = "mysql://root:227733436mysql@172.18.0.3:3306/kamaebackdb?schema=public&allowPublicKeyRetrieval=true"
 }
 
 model User {
@@ -52,4 +52,14 @@ model Perro {
   fechaNacimiento DateTime        @map("FECHA_NACIMIENTO")
 
   @@map("TBL_PERROS")
+}
+
+model Dogs {
+  id              Int             @id @default(autoincrement()) @map("ID_DOG")  
+  name          String          @map("NAME")
+  sex            String          @map("SEX")
+  sterilized    Boolean         @map("STERILIZED")
+  birthdate DateTime        @map("BIRTHDATE")
+
+  @@map("TBL_DOGS")
 }

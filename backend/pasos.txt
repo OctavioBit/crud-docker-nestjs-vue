@@ -1,3 +1,6 @@
+Los comandos de nest/npx se ejecutan en el contenedor con:
+sudo docker exec -it backendnodecqrs-backend-1 <comando>
+
 1) npx nest g co peliculas
 Crea el controller y el directorio peliculas si no existe
 2) npx nest g mo peliculas
@@ -6,6 +9,8 @@ Crea el modulo peliculas
 Crea el servicio peliculas
 
 ! Todo lo anterior actualiza app.module.ts
+! Si todo lo anterior se creo con sudo entonces todos los archivos son de sudo, ejecutar "chmod -R 777 . "
+para hacer que todos los usuarios puedan editar los archivos anteriores
 
 4) Crear el modelo en schema.prisma
 
