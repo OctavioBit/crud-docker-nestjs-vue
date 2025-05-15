@@ -1,10 +1,11 @@
 import { Controller,Get } from '@nestjs/common';
-import { DogsService } from './dogs.service';
+import { QueryBus } from '@nestjs/cqrs';
+import { GetAllDogsQuery } from './querys/getAllDogsQuery.query';
 
 @Controller('dogs')
 export class DogsController {
 
-    constructor(private readonly dogsService: DogsService) { }
+    constructor(private readonly queryBus: QueryBus) { }
 
     @Get("ping")
     getPing(): string {
@@ -13,7 +14,9 @@ export class DogsController {
 
     @Get("getAll")
     async getAll() {
-        return await this.dogsService.getAll();
+        const query = new GetAllDogsQuery();
+        const dogs = await this.queryBus.execute(query);
+        return dogs;
     }
 
 }
