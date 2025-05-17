@@ -12,3 +12,9 @@ https://www.youtube.com/watch?v=zA_HkejB-0s
 
 Ver la estructura de carpetas/archivos/repositorio de aca
 https://github.com/DeveloperMartin/architecture-hexagonal-node/blob/main/src/product-management/domain/interfaces/product.interface.ts
+
+Plugin para patron repository
+https://javascript.plainenglish.io/repository-pattern-set-up-in-node-js-with-prisma-7a39d5867477
+
+Un repository a mano
+https://www.tomray.dev/nestjs-prisma
