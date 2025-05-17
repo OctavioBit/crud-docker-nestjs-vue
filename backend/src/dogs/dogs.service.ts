@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClient, Dogs } from '@prisma/client'; 
-
-const prisma = new PrismaClient();
+import { Dogs } from '@prisma/client'; 
+import { DogsRepository } from "./dogs.repository";
 
 @Injectable()
 export class DogsService {
 
+    constructor(private readonly dogsRepository: DogsRepository){ }
+
     async getAll(): Promise<Dogs[]> {
 
-        const dogs = await prisma["dogs"].findMany();
+        const dogs = await this.dogsRepository.getAll();
 
         return dogs;
     }

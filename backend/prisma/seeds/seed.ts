@@ -1,34 +1,39 @@
+// prisma/seed.ts
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-async function doSeed() {
-
-  /*
-  const WhatWeDoInTheShadows = await prisma.pelicula.upsert({
-    where: {},
-    update: {},
-    create: {
-      where: {},
-      nombre: 'What we do in the shadows',      
-      generoPelicula: {
-        create: {
-          nombre: 'Comedia'          
-        },
+async function main() {
+  await prisma.dogs.createMany({
+    data: [
+      {
+        name: 'Max',
+        sex: 'Male',
+        sterilized: true,
+        birthdate: new Date('2020-01-15'),
       },
-    },
+      {
+        name: 'Bella',
+        sex: 'Female',
+        sterilized: false,
+        birthdate: new Date('2019-05-23'),
+      },
+      {
+        name: 'Rocky',
+        sex: 'Male',
+        sterilized: true,
+        birthdate: new Date('2018-08-10'),
+      },
+    ],
   })
-
-  console.log({ WhatWeDoInTheShadows })
-  */
 }
 
-doSeed()
-  .then(async () => {
-    await prisma.$disconnect()
+main()
+  .then(() => {
+    console.log('Seed completed.')
+    return prisma.$disconnect()
   })
-  .catch(async (e) => {
+  .catch((e) => {
     console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
+    return prisma.$disconnect()
   })
