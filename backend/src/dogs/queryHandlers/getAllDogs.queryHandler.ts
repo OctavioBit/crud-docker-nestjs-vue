@@ -9,7 +9,7 @@ export class GetAllDogsQueryHandler implements IQueryHandler<GetAllDogsQuery> {
 
     async execute(query: GetAllDogsQuery) {
         
-        const dogs = await this.dogsRepository.getAll();
+        const dogs = await this.dogsRepository.getAll(query.getFilters());
         
         return dogs;
     }

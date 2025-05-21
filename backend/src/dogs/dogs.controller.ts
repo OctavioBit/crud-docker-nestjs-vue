@@ -1,6 +1,7 @@
-import { Controller,Get } from '@nestjs/common';
+import { Controller,Get, Query } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { GetAllDogsQuery } from './querys/getAllDogsQuery.query';
+import { DogsFilters } from './dogs.filters';
 
 @Controller('dogs')
 export class DogsController {
@@ -13,8 +14,8 @@ export class DogsController {
     }
 
     @Get("getAll")
-    async getAll() {
-        const query = new GetAllDogsQuery();
+    async getAll(@Query() filters: DogsFilters) {
+        const query = new GetAllDogsQuery(filters);
         const dogs = await this.queryBus.execute(query);
         return dogs;
     }

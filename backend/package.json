@@ -5,7 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-  "prisma":{ 
+  "prisma": {
     "seed": "ts-node ./prisma/seeds/seed.ts"
   },
   "scripts": {
@@ -14,7 +14,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",    
+    "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -30,6 +30,8 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
     "@prisma/client": "^5.9.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
     "mysql2": "^3.7.1",
     "rxjs": "^7.8.1"
   },
@@ -75,7 +77,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "prisma": {
-      "seed" : "ts-node --transpile-only prisma/seeds/seed.ts"
+      "seed": "ts-node --transpile-only prisma/seeds/seed.ts"
     }
   }
 }

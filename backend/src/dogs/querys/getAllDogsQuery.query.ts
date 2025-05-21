@@ -1,3 +1,9 @@
+import { DogsFilters } from "../dogs.filters";
+
 export class GetAllDogsQuery {
-    constructor() { }
+    constructor(private readonly filters: DogsFilters) { }
+
+    getFilters(){
+        return this.filters;
+    }
 }
