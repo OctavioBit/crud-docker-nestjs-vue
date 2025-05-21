@@ -17,7 +17,11 @@ para hacer que todos los usuarios puedan editar los archivos anteriores
 Generales:
 - npx prisma format Formatea el codigo y puede agregar algo que uno se haya olvidado, como una relacion de una tabla a otra
 
-5) sudo docker exec -it backendnodecqrs-backend-1 npx prisma migrate dev
+5) Aplicar las migrations
+sudo docker exec -it backendnodecqrs-backend-1 npx prisma migrate dev
+
+6) Seedear la base:
+sudo docker exec -it backendnodecqrs-backend-1 npx prisma db seed
 
 6) Crear los query/command handlers
 
