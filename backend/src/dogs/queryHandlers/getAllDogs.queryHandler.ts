@@ -1,15 +1,15 @@
 import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
-import { GetAllDogsQuery } from '../querys/getAllDogsQuery.query';
-import { DogsRepository } from '../dogs.repository';
+import { GetAllDogsQuery } from '../querys/getAllDogs.query';
+import { DogsService } from '../dogs.service';
 
 @QueryHandler(GetAllDogsQuery)
 export class GetAllDogsQueryHandler implements IQueryHandler<GetAllDogsQuery> {
 
-    constructor(private readonly dogsRepository: DogsRepository) { }
+    constructor(private readonly dogsService: DogsService) { }
 
     async execute(query: GetAllDogsQuery) {
         
-        const dogs = await this.dogsRepository.getAll(query.getFilters());
+        const dogs = await this.dogsService.getAll(query.getFilters());
         
         return dogs;
     }

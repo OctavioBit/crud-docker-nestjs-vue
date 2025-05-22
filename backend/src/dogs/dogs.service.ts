@@ -14,4 +14,11 @@ export class DogsService {
 
         return dogs;
     }
+
+    async getById(id: number): Promise<Dogs> {
+
+        const dogs = await this.dogsRepository.getById(id);
+
+        return dogs;
+    }
 }

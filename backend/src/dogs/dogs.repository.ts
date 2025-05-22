@@ -22,4 +22,15 @@ export class DogsRepository {
 
         return dogs;
     }
+
+    async getById(id: number): Promise<Dogs> {
+        
+        const dog = await prisma["dogs"].findUnique({
+            where: {
+                id: id,
+            },
+        });
+
+        return dog;
+    }
 }

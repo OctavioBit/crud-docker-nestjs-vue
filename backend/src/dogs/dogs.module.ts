@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { GetAllDogsQueryHandler } from './queryHandlers/getAllDogs.queryHandler';
 import { DogsController } from './dogs.controller';
 import { DogsService } from './dogs.service';
 import { DogsRepository } from './dogs.repository';
+import { GetByIdDogQueryHandler } from './queryHandlers/getByIdDog.queryHandler';
+import { GetAllDogsQueryHandler } from './queryHandlers/getAllDogs.queryHandler';
 
-export const QueryHandlers = [GetAllDogsQueryHandler];
+export const QueryHandlers = [GetAllDogsQueryHandler,GetByIdDogQueryHandler];
 
 @Module({
       imports: [CqrsModule],
