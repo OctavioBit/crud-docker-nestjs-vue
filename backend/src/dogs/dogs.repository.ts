@@ -33,4 +33,12 @@ export class DogsRepository {
 
         return dog;
     }
+
+    async newDog(name: string,
+        sex: string,
+        sterilized: boolean,
+        birthdate: Date): Promise<Dogs> {
+
+        return null;
+    }
 }

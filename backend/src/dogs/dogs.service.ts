@@ -21,4 +21,14 @@ export class DogsService {
 
         return dogs;
     }
+
+    async newDog(name: string, 
+                  sex: string, 
+           sterilized: boolean, 
+            birthdate: Date) : Promise<Dogs> {
+                
+        const dog = await this.dogsRepository.newDog(name, sex, sterilized, birthdate);
+
+        return dog;
+    }
 }
