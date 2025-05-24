@@ -1,13 +1,15 @@
-import { Controller,Get, Query, ParseIntPipe } from '@nestjs/common';
-import { QueryBus } from '@nestjs/cqrs';
+import { Controller,Get, Post, Query, ParseIntPipe, Body, ParseBoolPipe } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllDogsQuery } from './querys/getAllDogs.query';
 import { GetByIdDogQuery } from './querys/getByIdDog.query';
 import { DogsFilters } from './dogs.filters';
+import { NewDogCommand } from './commands/newDog.command';
 
 @Controller('dogs')
 export class DogsController {
 
-    constructor(private readonly queryBus: QueryBus) { }
+    constructor(private readonly queryBus: QueryBus,
+                private readonly commandBus: CommandBus) { }
 
     @Get("ping")
     getPing(): string {
@@ -28,5 +30,23 @@ export class DogsController {
 
         return dog;
     }
+
+    @Post("newDog")
+    async newDog(@Body() dog: {
+                                name: string,
+                                sex: string,
+                                sterilized: string,
+                                birthdate: string
+                            }){
+
+        const {name, sex, sterilized, birthdate} = dog;
+
+        const command = new NewDogCommand(name, sex, sterilized=="true",new Date(birthdate));
+
+        const newDog = this.commandBus.execute(command);
+
+        return newDog;
+    }
+
 
 }

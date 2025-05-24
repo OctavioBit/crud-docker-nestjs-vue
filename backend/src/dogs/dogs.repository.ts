@@ -39,6 +39,13 @@ export class DogsRepository {
         sterilized: boolean,
         birthdate: Date): Promise<Dogs> {
 
-        return null;
+        const dog = await prisma["dogs"].create({
+                                                    data: {
+                                                        name: name,
+                                                        sex: sex,
+                                                        sterilized: sterilized,
+                                                        birthdate: birthdate }});
+
+        return dog;
     }
 }
