@@ -31,4 +31,9 @@ export class DogsService {
 
         return dog;
     }
+
+    async deleteDog(id: number): Promise<void> {
+
+        this.dogsRepository.deleteDog(id);
+    }
 }

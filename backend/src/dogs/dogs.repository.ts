@@ -48,4 +48,13 @@ export class DogsRepository {
 
         return dog;
     }
+
+    async deleteDog(id: number): Promise<void> {
+                
+        const result = await prisma["dogs"].delete({
+            where: {
+                id: Number(id),
+            },
+        })        
+    }
 }

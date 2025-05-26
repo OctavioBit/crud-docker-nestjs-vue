@@ -4,6 +4,7 @@ import { GetAllDogsQuery } from './querys/getAllDogs.query';
 import { GetByIdDogQuery } from './querys/getByIdDog.query';
 import { DogsFilters } from './dogs.filters';
 import { NewDogCommand } from './commands/newDog.command';
+import { DeleteDogCommand } from './commands/deleteDog.command';
 
 @Controller('dogs')
 export class DogsController {
@@ -48,5 +49,9 @@ export class DogsController {
         return newDog;
     }
 
-
+    @Post("deleteDog")
+    async deleteDog(@Body('id', ParseIntPipe) id: number) {
+        const command = new DeleteDogCommand(id);
+        this.commandBus.execute(command);
+    }
 }
