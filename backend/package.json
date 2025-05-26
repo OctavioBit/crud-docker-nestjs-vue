@@ -75,9 +75,6 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "prisma": {
-      "seed": "ts-node --transpile-only prisma/seeds/seed.ts"
-    }
+    "testEnvironment": "node"    
   }
 }

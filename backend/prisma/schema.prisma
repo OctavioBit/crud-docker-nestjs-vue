@@ -10,50 +10,6 @@ datasource db {
   url      = "mysql://root:227733436mysql@172.28.1.1:3306/kamaebackdb?schema=public&allowPublicKeyRetrieval=true"
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
-
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
-
-model GeneroPelicula {
-  id       Int        @id @default(autoincrement())
-  nombre   String
-  Pelicula Pelicula[]
-
-  @@map("TBL_GENEROS_PELICULA")
-}
-
-model Pelicula {
-  id               Int            @id @default(autoincrement())
-  nombre           String
-  generoPelicula   GeneroPelicula @relation(fields: [idGeneroPelicula], references: [id])
-  idGeneroPelicula Int
-
-  @@map("TBL_PELICULAS")
-}
-
-model Perro {
-
-  id              Int             @id @default(autoincrement()) @map("ID_PERRO")  
-  nombre          String          @map("NOMBRE")
-  sexo            String          @map("SEXO")
-  esterilizado    Boolean         @map("ESTERILIZADO")
-  fechaNacimiento DateTime        @map("FECHA_NACIMIENTO")
-
-  @@map("TBL_PERROS")
-}
-
 model Dogs {
   id              Int             @id @default(autoincrement()) @map("ID_DOG")  
   name          String          @map("NAME")
