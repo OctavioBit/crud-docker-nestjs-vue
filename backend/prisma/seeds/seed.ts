@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  await prisma.dogs.createMany({
+  await prisma.dog.createMany({
     data: [
       {
         name: 'Max',

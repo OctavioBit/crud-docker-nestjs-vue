@@ -1,6 +1,6 @@
 import { IsOptional, IsString, IsBooleanString, IsDateString } from 'class-validator';
 
-export class DogsFilters {
+export class DogFilters {
     @IsOptional()
     @IsString()
     name?: string;

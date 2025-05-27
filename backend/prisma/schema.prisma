@@ -10,7 +10,7 @@ datasource db {
   url      = "mysql://root:227733436mysql@172.28.1.1:3306/kamaebackdb?schema=public&allowPublicKeyRetrieval=true"
 }
 
-model Dogs {
+model Dog {
   id              Int             @id @default(autoincrement()) @map("ID_DOG")  
   name          String          @map("NAME")
   sex            String          @map("SEX")

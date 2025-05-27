@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClient, Dogs } from '@prisma/client'; 
-import { DogsFilters } from './dogs.filters';
+import { PrismaClient, Dog } from '@prisma/client'; 
+import { DogFilters } from './dog.filters';
 
 const prisma = new PrismaClient();
 
 @Injectable()
-export class DogsRepository {
+export class DogRepository {
 
-    async getAll(filters: DogsFilters): Promise<Dogs[]> {
+    async getAll(filters: DogFilters): Promise<Dog[]> {
 
         const { name, sex, sterilized, birthdate } = filters;
 
-        const dogs = await prisma["dogs"].findMany({
+        const dogs = await prisma["dog"].findMany({
             where: {
                 name: name ? { contains: name } : undefined,
                 sex: sex ? { equals: sex } : undefined,
@@ -23,9 +23,9 @@ export class DogsRepository {
         return dogs;
     }
 
-    async getById(id: number): Promise<Dogs> {
+    async getById(id: number): Promise<Dog> {
         
-        const dog = await prisma["dogs"].findUnique({
+        const dog = await prisma["dog"].findUnique({
             where: {
                 id: id,
             },
@@ -37,9 +37,9 @@ export class DogsRepository {
     async newDog(name: string,
         sex: string,
         sterilized: boolean,
-        birthdate: Date): Promise<Dogs> {
+        birthdate: Date): Promise<Dog> {
 
-        const dog = await prisma["dogs"].create({
+        const dog = await prisma["dog"].create({
                                                     data: {
                                                         name: name,
                                                         sex: sex,
@@ -51,7 +51,7 @@ export class DogsRepository {
 
     async deleteDog(id: number): Promise<void> {
                 
-        const result = await prisma["dogs"].delete({
+        const result = await prisma["dog"].delete({
             where: {
                 id: Number(id),
             },

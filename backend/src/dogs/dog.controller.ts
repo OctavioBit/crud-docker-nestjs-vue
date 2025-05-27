@@ -2,12 +2,12 @@ import { Controller,Get, Post, Query, ParseIntPipe, Body, ParseBoolPipe } from '
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllDogsQuery } from './querys/getAllDogs.query';
 import { GetByIdDogQuery } from './querys/getByIdDog.query';
-import { DogsFilters } from './dogs.filters';
+import { DogFilters } from './dog.filters';
 import { NewDogCommand } from './commands/newDog.command';
 import { DeleteDogCommand } from './commands/deleteDog.command';
 
-@Controller('dogs')
-export class DogsController {
+@Controller('dog')
+export class DogController {
 
     constructor(private readonly queryBus: QueryBus,
                 private readonly commandBus: CommandBus) { }
@@ -18,7 +18,7 @@ export class DogsController {
     }
 
     @Get("getAll")
-    async getAll(@Query() filters: DogsFilters) {
+    async getAll(@Query() filters: DogFilters) {
         const query = new GetAllDogsQuery(filters);
         const dogs = await this.queryBus.execute(query);
         return dogs;

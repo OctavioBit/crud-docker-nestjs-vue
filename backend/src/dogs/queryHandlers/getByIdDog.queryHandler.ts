@@ -1,11 +1,11 @@
 import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
 import { GetByIdDogQuery } from '../querys/getByIdDog.query';
-import { DogsService } from '../dogs.service';
+import { DogService } from '../dog.service';
 
 @QueryHandler(GetByIdDogQuery)
 export class GetByIdDogQueryHandler implements IQueryHandler<GetByIdDogQuery> {
 
-    constructor(private readonly dogsService: DogsService) { }
+    constructor(private readonly dogsService: DogService) { }
 
     async execute(query: GetByIdDogQuery) {
         

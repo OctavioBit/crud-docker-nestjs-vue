@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { DogsController } from './dogs.controller';
-import { DogsService } from './dogs.service';
-import { DogsRepository } from './dogs.repository';
+import { DogController } from './dog.controller';
+import { DogService } from './dog.service';
+import { DogRepository } from './dog.repository';
 import { GetByIdDogQueryHandler } from './queryHandlers/getByIdDog.queryHandler';
 import { GetAllDogsQueryHandler } from './queryHandlers/getAllDogs.queryHandler';
 import { NewDogCommandHandler } from './commandHandlers/newDog.commandHandler';
@@ -13,11 +13,11 @@ export const CommandHandlers = [NewDogCommandHandler, DeleteDogCommandHandler ];
 
 @Module({
       imports: [CqrsModule],
-  controllers: [DogsController],
-    providers: [DogsService, 
-                DogsRepository,
+  controllers: [DogController],
+    providers: [DogService, 
+                DogRepository,
                 ...QueryHandlers,
                 ...CommandHandlers]
 })
 
-export class DogsModule {}
+export class DogModule {}
