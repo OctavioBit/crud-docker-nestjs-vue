@@ -2,13 +2,16 @@ PENDIENTE
 * Tests automaticos, puede ser con Jest o Vite o eso que tiene vuetify 3 
 * Debugger -> https://blog.itaywol.com/dockerizing-nestjs-application-and-debugging
 * Las variables del .env no las toma el archivo schema.prisma
-* ver de que lleguen a los actions DTOs, para evitar parsear
+* Ejecutar estos 3 comandos automaticamente al inicio:
+    sudo docker exec -it backendnodecqrs-backend-1 npx prisma generate
+    sudo docker exec -it backendnodecqrs-backend-1 npx prisma migrate dev
+    sudo docker exec -it backendnodecqrs-backend-1 npx prisma db seed
 
 EN CURSO
-* ABMC Perros
+* ver de que lleguen a los actions DTOs, para evitar parsear
 
 TERMINADOS
-
+* Backend CRUD Dogs
 * Dockerizar front end
 * Dockerizar Back + DB
 * CQRS
