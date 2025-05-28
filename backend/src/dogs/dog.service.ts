@@ -32,6 +32,17 @@ export class DogService {
         return dog;
     }
 
+    async updateDog(id: number,
+                    name: string,
+                    sex: string,
+                    sterilized: boolean,
+                    birthdate: Date): Promise<Dog> {
+
+        const dog = await this.dogRepository.updateDog(id,name, sex, sterilized, birthdate);
+
+        return dog;
+    }
+
     async deleteDog(id: number): Promise<void> {
 
         this.dogRepository.deleteDog(id);

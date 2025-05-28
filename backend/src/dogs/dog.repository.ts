@@ -49,6 +49,25 @@ export class DogRepository {
         return dog;
     }
 
+    async updateDog(id: number,
+                    name: string,
+                    sex: string,
+                    sterilized: boolean,
+                    birthdate: Date): Promise<Dog> {
+
+        const dog = await prisma["dog"].update({
+            where: { id: id },
+            data: {
+                name: name,
+                sex: sex,
+                sterilized: sterilized,
+                birthdate: birthdate
+            }
+        });
+
+        return dog;
+    }
+
     async deleteDog(id: number): Promise<void> {
                 
         const result = await prisma["dog"].delete({
