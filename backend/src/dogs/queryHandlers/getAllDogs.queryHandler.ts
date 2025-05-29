@@ -1,15 +1,25 @@
 import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
 import { GetAllDogsQuery } from '../querys/getAllDogs.query';
-import { DogService } from '../dog.service';
+import { ShapeShifterService } from 'src/shapeshifter.service';
+//import { DogService } from '../dog.service';
 
 @QueryHandler(GetAllDogsQuery)
 export class GetAllDogsQueryHandler implements IQueryHandler<GetAllDogsQuery> {
 
-    constructor(private readonly dogsService: DogService) { }
+    constructor(private readonly shapeShifterService: ShapeShifterService) { }
 
     async execute(query: GetAllDogsQuery) {
         
-        const dogs = await this.dogsService.getAll(query.getFilters());
+        const { name, sex, sterilized, birthdate } = query.getFilters();
+
+        const filters = {
+                            name: name ? { contains: name } : undefined,
+                            sex: sex ? { equals: sex } : undefined,
+                            sterilized: sterilized !== undefined ? sterilized === 'true' : undefined,
+                            birthdate: birthdate ? new Date(birthdate) : undefined,
+                        };
+
+        const dogs = await this.shapeShifterService.getAll("dog", filters);
         
         return dogs;
     }

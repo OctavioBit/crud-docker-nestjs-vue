@@ -1,14 +1,14 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { DeleteDogCommand } from '../commands/deleteDog.command';
-import { DogService } from '../dog.service';
+import { ShapeShifterService } from 'src/shapeshifter.service';
+//import { DogService } from '../dog.service';
 
 @CommandHandler(DeleteDogCommand)
 export class DeleteDogCommandHandler implements ICommandHandler<DeleteDogCommand> {
-    constructor(private readonly dogsService: DogService) { }
+    constructor(private readonly shapeShifterService: ShapeShifterService) { }
 
     async execute(command: DeleteDogCommand) {
         const { id } = command;
-        await this.dogsService.deleteDog(id);        
+        await this.shapeShifterService.delete("dog",id);
     }
 }
-

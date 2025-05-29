@@ -20,6 +20,7 @@ export class DogController {
 
     @Get("getAll")
     async getAll(@Query() filters: DogFilters) {
+        
         const query = new GetAllDogsQuery(filters);
         const dogs = await this.queryBus.execute(query);
         return dogs;
