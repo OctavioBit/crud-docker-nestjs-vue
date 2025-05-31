@@ -6,6 +6,7 @@ PENDIENTE
     sudo docker exec -it backendnodecqrs-backend-1 npx prisma generate
     sudo docker exec -it backendnodecqrs-backend-1 npx prisma migrate dev
     sudo docker exec -it backendnodecqrs-backend-1 npx prisma db seed
+* Subir vue y vuetify a 3 (ambos)
 
 EN CURSO
 * ver de que lleguen a los actions DTOs, para evitar parsear

@@ -33,7 +33,7 @@ sudo docker exec -it backendnodecqrs-backend-1 npx prisma db seed
 Saber la ip del contenedor:
 docker network ls
 docker network inspect <nombre_de_la_red>
-http://172.18.0.3:3000/coco
+http://172.18.0.3:3000/hello
 
 sudo docker system prune -a --volumes
 
