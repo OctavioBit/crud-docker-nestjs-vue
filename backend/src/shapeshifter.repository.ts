@@ -34,43 +34,21 @@ export class ShapeShifterRepository {
             },
         })
     }
-/*
-    
-    
-    async newDog(name: string,
-        sex: string,
-        sterilized: boolean,
-        birthdate: Date): Promise<Dog> {
 
-        const dog = await prisma["dog"].create({
-                                                    data: {
-                                                        name: name,
-                                                        sex: sex,
-                                                        sterilized: sterilized,
-                                                        birthdate: birthdate }});
+    async new(modelName: string, newModel:any): Promise<any> {
 
-        return dog;
+        const model = await prisma[modelName].create({data: newModel});
+
+        return model;
     }
 
-    async updateDog(id: number,
-                    name: string,
-                    sex: string,
-                    sterilized: boolean,
-                    birthdate: Date): Promise<Dog> {
+    async updateById(modelName: string, id: number, updateModel: any): Promise<any> {
 
-        const dog = await prisma["dog"].update({
+        const model = await prisma[modelName].update({
             where: { id: id },
-            data: {
-                name: name,
-                sex: sex,
-                sterilized: sterilized,
-                birthdate: birthdate
-            }
+            data: updateModel
         });
 
-        return dog;
+        return model;
     }
-
-    
-    */
 }

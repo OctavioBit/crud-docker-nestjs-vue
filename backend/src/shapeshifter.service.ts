@@ -25,31 +25,17 @@ export class ShapeShifterService {
         this.shapeShifterRepository.delete(modelName,id);
     }
 
-    /*
-    
-    
+    async new(modelName: string, newModel: any): Promise<any> {
 
-    async newDog(name: string, 
-                  sex: string, 
-           sterilized: boolean, 
-            birthdate: Date) : Promise<Dog> {
-                
-        const dog = await this.dogRepository.newDog(name, sex, sterilized, birthdate);
+        const model = await this.shapeShifterRepository.new(modelName,newModel);
 
-        return dog;
+        return model;
     }
-
-    async updateDog(id: number,
-                    name: string,
-                    sex: string,
-                    sterilized: boolean,
-                    birthdate: Date): Promise<Dog> {
-
-        const dog = await this.dogRepository.updateDog(id,name, sex, sterilized, birthdate);
-
-        return dog;
-    }
-
     
-    */
+    async updateById(modelName:string,id: number, modelUpdate:any): Promise<any> {
+
+        const model = await this.shapeShifterRepository.updateById(modelName,id, modelUpdate);
+
+        return model;
+    }
 }

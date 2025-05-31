@@ -1,7 +1,6 @@
 import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
 import { GetAllDogsQuery } from '../querys/getAllDogs.query';
 import { ShapeShifterService } from 'src/shapeshifter.service';
-//import { DogService } from '../dog.service';
 
 @QueryHandler(GetAllDogsQuery)
 export class GetAllDogsQueryHandler implements IQueryHandler<GetAllDogsQuery> {

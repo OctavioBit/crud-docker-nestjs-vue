@@ -1,15 +1,19 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { DogService } from '../dog.service';
 import { UpdateDogCommand } from '../commands/updateDog.command';
+import { ShapeShifterService } from 'src/shapeshifter.service';
 
 @CommandHandler(UpdateDogCommand)
 export class UpdateDogCommandHandler implements ICommandHandler<UpdateDogCommand> {
-    constructor(private readonly dogsService: DogService) { }
+    constructor(private readonly shapeShifterService: ShapeShifterService) { }
 
     async execute(command: UpdateDogCommand) {
-        const { id, name, sex, sterilized, birthdate } = command;
-        const dog = await this.dogsService.updateDog(id, name, sex, sterilized, birthdate);
-        return dog;
+        const { name, sex, sterilized, birthdate } = command;  
+        const { id } = command;
+
+        const updateDog = { name, sex, sterilized, birthdate };
+
+        const updatedDog = await this.shapeShifterService.updateById('dog', id, updateDog);
+        return updatedDog;
     }
 }
 

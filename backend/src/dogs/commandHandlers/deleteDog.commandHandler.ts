@@ -1,7 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { DeleteDogCommand } from '../commands/deleteDog.command';
 import { ShapeShifterService } from 'src/shapeshifter.service';
-//import { DogService } from '../dog.service';
 
 @CommandHandler(DeleteDogCommand)
 export class DeleteDogCommandHandler implements ICommandHandler<DeleteDogCommand> {
