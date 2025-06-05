@@ -20,7 +20,7 @@ services:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
    ports:
-    - "5000:80"       
+    - "5000:5000"       
    depends_on:
      - database
    networks:
@@ -35,7 +35,7 @@ services:
      - ./frontend:/usr/src/app
      - /usr/src/app/node_modules
    ports:
-    - "5001:80"
+    - "5001:5001"
    environment:
     - BACKEND_URL=http://backend:8000
    networks:
