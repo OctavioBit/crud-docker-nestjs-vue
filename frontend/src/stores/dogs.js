@@ -6,6 +6,15 @@ export const useDogStore = defineStore('dog', {
     }),
     actions: {
         async getAllDogs() {
+
+            fetch('http://172.28.1.2:5000/dog/getAll')
+                .then(res => {
+                    if (!res.ok) throw new Error('Error en la petición');
+                    return res.json();
+                })
+                .then(data => console.log(data))
+                .catch(err => console.error(err));
+
             /*const querySnapshot = await getDocs(collection(db, 'todos'))
             this.todos = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))*/
         },

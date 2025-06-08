@@ -55,12 +55,13 @@ const dogStore = useDogStore();
 
 export default {
   data: () => ({
-    pepe: 16
+    pepe: 16,
+    dogs:[]
   }),
   methods: {
     onClickSearch: function(){
        console.log('Hola');  
-      dogStore.getAllDogs();
+      this.dogs = dogStore.getAllDogs();
       },
     contar: function(){
         this.pepe++;
