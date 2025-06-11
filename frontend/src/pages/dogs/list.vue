@@ -3,28 +3,30 @@
     <v-row>
       <v-col></v-col>
       <v-col cols="12">
-            <v-row>
-              <v-col>
-                <v-text-field label="Name"></v-text-field>
-              </v-col>
-              <v-col>
-                <v-select label="Sex" :items="['Male', 'Female']">
-                </v-select>
-              </v-col>
-              <v-col>
-                <v-select label="Sterilized" :items="['Yes', 'No']">
-                </v-select>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-text-field label="Birthday From"></v-text-field>
-              </v-col>
-              <v-col>
-                <v-text-field label="Birthday To"></v-text-field>
-              </v-col>
-              <v-col></v-col>
-            </v-row>         
+        <v-row>
+          <v-col>
+            <v-text-field v-model="searchFilters.name" label="Name">
+            </v-text-field>
+          </v-col>
+          <v-col>
+            <v-select v-model="searchFilters.sex" label="Sex" :items="['Male', 'Female']">
+            </v-select>
+          </v-col>
+          <v-col>
+            <v-select v-model="searchFilters.sterilized" label="Sterilized" :items="['Yes', 'No']">
+            </v-select>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field v-model="searchFilters.birthDayFrom" label="Birthday From">
+            </v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field v-model="searchFilters.birthDayTo" label="Birthday To"></v-text-field>
+          </v-col>
+          <v-col></v-col>
+        </v-row>
       </v-col>
       <v-col></v-col>
     </v-row>
@@ -34,11 +36,10 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-data-table :items="dogs"
-                      :headers="dogHeaders">
+        <v-data-table :items="dogs" :headers="dogHeaders">
         </v-data-table>
       </v-col>
-    </v-row>    
+    </v-row>
   </v-container>
 </template>
 
@@ -58,13 +59,20 @@ const dogHeaders = ref([
 
 export default {
   data: () => ({
+    searchFilters: {
+      name:null,
+      sex:null,
+      sterilized:null,
+      birthDayFrom:null,
+      birthDayTo:null
+    },
     pepe: 16,    
     dogs: [],
     dogHeaders:dogHeaders
   }), 
   methods: {
     onClickSearch: async function(){        
-      await dogStore.getAllDogs();
+      await dogStore.getAllDogs(this.searchFilters);
       this.dogs = dogStore.dogs;
       },
     contar: function(){

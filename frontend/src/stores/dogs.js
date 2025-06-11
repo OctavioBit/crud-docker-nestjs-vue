@@ -5,9 +5,13 @@ export const useDogStore = defineStore('dog', {
         dogs: []
     }),
     actions: {
-        async getAllDogs() {
+        async getAllDogs(searchFilters) {
+            
+            const filterQuerys = (searchFilters.name ? 'name=' + searchFilters.name : '') +
+                                 (searchFilters.sex ? '&sex=' + searchFilters.sex : '' )+
+                                 (searchFilters.sterilized ? '&sterilized=' + searchFilters.sterilized : '');
 
-            await fetch('http://172.28.1.2:5000/dog/getAll')
+            await fetch('http://172.28.1.2:5000/dog/getAll'+ '?' + filterQuerys)
                 .then(res => {
                     if (!res.ok) throw new Error('Error en la petición');
                     return res.json();
