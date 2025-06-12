@@ -6,12 +6,15 @@ PENDIENTE
     sudo docker exec -it backendnodecqrs-backend-1 npx prisma generate
     sudo docker exec -it backendnodecqrs-backend-1 npx prisma migrate dev
     sudo docker exec -it backendnodecqrs-backend-1 npx prisma db seed
-* Subir vue y vuetify a 3 (ambos)
+* ver de que lleguen a los actions DTOs, para evitar parsear
+* poner la url del backend en alguna constante
+* birthdate por rango
 
 EN CURSO
-* ver de que lleguen a los actions DTOs, para evitar parsear
+* CRUD Dogs
 
 TERMINADOS
+* Subir vue y vuetify a 3 (ambos)
 * Backend CRUD Dogs
 * Dockerizar front end
 * Dockerizar Back + DB

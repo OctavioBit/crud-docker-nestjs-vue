@@ -8,7 +8,7 @@ export const useDogStore = defineStore('dog', {
         async getAllDogs(searchFilters) {
             
             const filterQuerys = (searchFilters.name ? 'name=' + searchFilters.name : '') +
-                                 (searchFilters.sex ? '&sex=' + searchFilters.sex : '' )+
+                                 (searchFilters.sex == 'All' ? '' : '&sex=' + searchFilters.sex )+
                                  (searchFilters.sterilized ? '&sterilized=' + searchFilters.sterilized : '');
 
             await fetch('http://172.28.1.2:5000/dog/getAll'+ '?' + filterQuerys)
@@ -18,13 +18,28 @@ export const useDogStore = defineStore('dog', {
                 })
                 .then(data => {console.log(data); this.dogs = data;})
                 .catch(err => console.error(err));
-
-            /*const querySnapshot = await getDocs(collection(db, 'todos'))
-            this.todos = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))*/
         },
         async newDog(dog) {
-            /*await addDoc(collection(db, 'todos'), todo)
-            this.fetchTodos()*/
+
+            fetch('http://172.28.1.2:5000/dog/newDog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dog),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la solicitud');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Hubo un error:', error);
+                });
         },
         async deleteDog(id) {
             /*await deleteDoc(doc(db, 'todos', id))
