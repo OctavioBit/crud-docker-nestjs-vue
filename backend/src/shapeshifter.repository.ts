@@ -18,7 +18,7 @@ export class ShapeShifterRepository {
     }
 
     async getAll(modelName: string, filters: any): Promise<any[]> {
-
+        
         const models = await prisma[modelName].findMany({
             where: filters,
         });

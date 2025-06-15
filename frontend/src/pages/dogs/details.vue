@@ -42,6 +42,7 @@
 <script>
 
 import { useDogStore } from '@/stores/dogs'
+import { useRoute } from 'vue-router'
 
 const dogStore = useDogStore();
 
@@ -62,11 +63,20 @@ export default {
       this.onClickBack();
     },
     onClickBack:function(){
-      this.$router.push("/dogs/list");
+      this.$router.push("/dogs/list");      
     }
   },
   mounted: function(){
-   
+    const route = useRoute();
+    const dogId = route.query.id;
+
+    fetch('http://172.28.1.2:5000/dog/getById?id=' + dogId)
+      .then(res => {
+        if (!res.ok) throw new Error('Error en la petición');
+        return res.json();
+      })
+      .then(data => { console.log(data); this.model = data; })
+      .catch(err => console.error(err)); 
   }
 }
 </script>

@@ -9,6 +9,7 @@ PENDIENTE
 * ver de que lleguen a los actions DTOs, para evitar parsear
 * poner la url del backend en alguna constante
 * birthdate por rango
+* Validaciones
 
 EN CURSO
 * CRUD Dogs

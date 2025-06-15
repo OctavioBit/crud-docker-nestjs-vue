@@ -11,14 +11,14 @@ export const useDogStore = defineStore('dog', {
                                  (searchFilters.sex == 'All' ? '' : '&sex=' + searchFilters.sex )+
                                  (searchFilters.sterilized ? '&sterilized=' + searchFilters.sterilized : '');
 
-            await fetch('http://172.28.1.2:5000/dog/getAll'+ '?' + filterQuerys)
+            await fetch('http://172.28.1.2:5000/dog/getAll?' + filterQuerys)
                 .then(res => {
                     if (!res.ok) throw new Error('Error en la petición');
                     return res.json();
                 })
                 .then(data => {console.log(data); this.dogs = data;})
                 .catch(err => console.error(err));
-        },
+        },        
         async newDog(dog) {
 
             fetch('http://172.28.1.2:5000/dog/newDog', {

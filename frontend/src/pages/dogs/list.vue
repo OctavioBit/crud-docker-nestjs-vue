@@ -42,7 +42,7 @@
       <v-col>
         <v-data-table :items="dogs" :headers="dogHeaders">
           <template v-slot:item.actions="{ item }">
-            <v-btn icon color="blue">
+            <v-btn icon color="blue" v-on:click="onClickEdit(item.id)">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           <v-btn icon color="red">
@@ -80,25 +80,24 @@ export default {
       birthDayTo:null
     },
     yesNoItems: [{ text: "Yes", value: true },
-    { text: "No", value: false }],
-    pepe: 16,    
+                 { text: "No", value: false }],
     dogs: [],
     dogHeaders:dogHeaders
   }), 
   methods: {
     onClickSearch: async function(){        
-      await dogStore.getAllDogs(this.searchFilters);
-      this.dogs = dogStore.dogs;
+        await dogStore.getAllDogs(this.searchFilters);
+        this.dogs = dogStore.dogs;
       },
     onClickNew:function(){
       this.$router.push("/dogs/details");
-    },
-    contar: function(){
-        this.pepe++;
+    },   
+    onClickEdit:function(dogId){      
+      this.$router.push({ path: "/dogs/details", query: { id: dogId } });
     }
   },
   mounted: function(){
-    this.pepe = 0;
+    
   }
 }
 </script>
