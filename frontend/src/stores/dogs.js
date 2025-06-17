@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
 
 export const useDogStore = defineStore('dog', {
     state: () => ({
@@ -11,7 +12,7 @@ export const useDogStore = defineStore('dog', {
                                  (searchFilters.sex == 'All' ? '' : '&sex=' + searchFilters.sex )+
                                  (searchFilters.sterilized ? '&sterilized=' + searchFilters.sterilized : '');
 
-            await fetch('http://172.28.1.2:5000/dog/getAll?' + filterQuerys)
+            await fetch(apiUrl + '/dog/getAll?' + filterQuerys)
                 .then(res => {
                     if (!res.ok) throw new Error('Error en la petición');
                     return res.json();
@@ -21,7 +22,39 @@ export const useDogStore = defineStore('dog', {
         },        
         async newDog(dog) {
 
-            fetch('http://172.28.1.2:5000/dog/newDog', {
+            fetch(apiUrl + '/dog/newDog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dog),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la solicitud');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Respuesta del servidor:', data);
+                })
+                .catch(error => {
+                    console.error('Hubo un error:', error);
+                });                         
+        },
+        async deleteDog(id) {
+            fetch(apiUrl + '/dog/deleteDog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({id:id}),
+            }).catch(error => {
+                    console.error('Hubo un error:', error);
+                });            
+        },
+        async updateDog(dog) {
+            fetch(apiUrl + '/dog/updateDog', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,14 +73,6 @@ export const useDogStore = defineStore('dog', {
                 .catch(error => {
                     console.error('Hubo un error:', error);
                 });
-        },
-        async deleteDog(id) {
-            /*await deleteDoc(doc(db, 'todos', id))
-            this.fetchTodos()*/
-        },
-        async updateDog(id, updated) {
-            /*await updateDoc(doc(db, 'todos', id), updated)
-            this.fetchTodos()*/
         }
     }
 })

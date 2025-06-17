@@ -45,10 +45,10 @@
             <v-btn icon color="blue" v-on:click="onClickEdit(item.id)">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-          <v-btn icon color="red">
-            <v-icon>mdi-delete</v-icon>
-          </v-btn>
-        </template>
+            <v-btn icon color="red" v-on:click="onClickDelete(item.id)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -78,9 +78,7 @@ export default {
       sterilized:'',
       birthDayFrom:null,
       birthDayTo:null
-    },
-    yesNoItems: [{ text: "Yes", value: true },
-                 { text: "No", value: false }],
+    },    
     dogs: [],
     dogHeaders:dogHeaders
   }), 
@@ -89,6 +87,10 @@ export default {
         await dogStore.getAllDogs(this.searchFilters);
         this.dogs = dogStore.dogs;
       },
+    onClickDelete: async function (dogId) {
+      await dogStore.deleteDog(dogId);      
+      await this.onClickSearch();
+    },
     onClickNew:function(){
       this.$router.push("/dogs/details");
     },   

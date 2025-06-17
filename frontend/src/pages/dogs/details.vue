@@ -43,23 +43,30 @@
 
 import { useDogStore } from '@/stores/dogs'
 import { useRoute } from 'vue-router'
+const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
 
 const dogStore = useDogStore();
 
 export default {
   data: () => ({
     model: {
+      id:null,
       name:null,
       sex:null,
       sterilized:null,
       birthdate:null
-    },
-    yesNoItems: [{ text: "Yes", value: true },
-    { text: "No", value: false }]    
+    }    
   }), 
   methods: {
-    onClickSave: async function(){              
-      await dogStore.newDog(this.model);
+    onClickSave: async function(){
+
+      if(this.model.id){
+        await dogStore.updateDog(this.model);  
+      }
+      else{
+        await dogStore.newDog(this.model);  
+      }
+      
       this.onClickBack();
     },
     onClickBack:function(){
@@ -70,12 +77,16 @@ export default {
     const route = useRoute();
     const dogId = route.query.id;
 
-    fetch('http://172.28.1.2:5000/dog/getById?id=' + dogId)
+    fetch(apiUrl + '/dog/getById?id=' + dogId)
       .then(res => {
         if (!res.ok) throw new Error('Error en la petición');
         return res.json();
       })
-      .then(data => { console.log(data); this.model = data; })
+      .then(data => { 
+        console.log(data); this.model = data; 
+        this.model.sterilized += '';
+        this.model.id = dogId;
+      })
       .catch(err => console.error(err)); 
   }
 }
