@@ -1,41 +1,48 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col></v-col>
-      <v-col cols="12">
-        <v-row>
-          <v-col>
-            <v-text-field v-model="model.name" label="Name">
-            </v-text-field>
-          </v-col>
-          <v-col>
-            <v-select v-model="model.sex" label="Sex" :items="['Male', 'Female']">
-            </v-select>
-          </v-col>
-          <v-col>
-            <v-radio-group label="Sterilized" inline v-model="model.sterilized">
-              <v-radio label="Yes" value="true"></v-radio>
-              <v-radio label="No" value="false"></v-radio>              
-            </v-radio-group>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-text-field v-model="model.birthdate" label="Birthday">
-            </v-text-field>
-          </v-col>
-          <v-col></v-col>
-          <v-col></v-col>
-        </v-row>
-      </v-col>
-      <v-col></v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="10"></v-col>
-      <v-col><v-btn text v-on:click="onClickSave">Save</v-btn></v-col>
-      <v-col><v-btn text v-on:click="onClickBack">Back</v-btn></v-col>
-    </v-row>    
-  </v-container>
+  <v-form ref="dogForm" v-model="validDogForm">
+    <v-container>
+      <v-row>
+        <v-col></v-col>
+        <v-col cols="12">
+          <v-row>
+            <v-col>
+              <v-text-field v-model="model.name" 
+                            label="Name" 
+                            required
+                            :rules="[ v => vrules.required(v,"Name") ]">
+              </v-text-field>
+            </v-col>
+            <v-col>
+              <v-select v-model="model.sex" 
+                        label="Sex" 
+                        :items="['Male', 'Female']">
+              </v-select>
+            </v-col>
+            <v-col>
+              <v-radio-group label="Sterilized" inline v-model="model.sterilized">
+                <v-radio label="Yes" value="true"></v-radio>
+                <v-radio label="No" value="false"></v-radio>
+              </v-radio-group>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-text-field v-model="model.birthdate" label="Birthday">
+              </v-text-field>
+            </v-col>
+            <v-col></v-col>
+            <v-col></v-col>
+          </v-row>
+        </v-col>
+        <v-col></v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="10"></v-col>
+        <v-col><v-btn text v-on:click="onClickSave">Save</v-btn></v-col>
+        <v-col><v-btn text v-on:click="onClickBack">Back</v-btn></v-col>
+      </v-row>
+    </v-container>
+  </v-form>
 </template>
 
 
@@ -43,6 +50,7 @@
 
 import { useDogStore } from '@/stores/dogs'
 import { useRoute } from 'vue-router'
+import { vrules } from '@/validation/rules'
 const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
 
 const dogStore = useDogStore();
@@ -55,10 +63,15 @@ export default {
       sex:null,
       sterilized:null,
       birthdate:null
-    }    
+    },
+    validDogForm:false,
+    vrules: vrules
   }), 
   methods: {
     onClickSave: async function(){
+
+      if (!this.validDogForm)
+        return false;
 
       if(this.model.id){
         await dogStore.updateDog(this.model);  
@@ -76,6 +89,9 @@ export default {
   mounted: function(){
     const route = useRoute();
     const dogId = route.query.id;
+
+    if (!dogId)
+      return false;
 
     fetch(apiUrl + '/dog/getById?id=' + dogId)
       .then(res => {
