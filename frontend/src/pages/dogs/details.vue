@@ -9,7 +9,7 @@
               <v-text-field v-model="model.name" 
                             label="Name" 
                             required
-                            :rules="[ v => vrules.required(v,"Name") ]">
+                            :rules="[ v => vrules.required(v,'Name')]" >
               </v-text-field>
             </v-col>
             <v-col>
@@ -70,6 +70,7 @@ export default {
   methods: {
     onClickSave: async function(){
 
+      this.$refs.dogForm.validate();
       if (!this.validDogForm)
         return false;
 
