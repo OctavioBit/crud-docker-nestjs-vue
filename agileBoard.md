@@ -9,13 +9,14 @@ PENDIENTE
 * ver de que lleguen a los actions DTOs, para evitar parsear
 * poner la url del backend en alguna constante
 * birthdate por rango
-* axios
-* Componente filters
+
 
 EN CURSO
-* Validaciones vrules
+* axios
 
 TERMINADOS
+* Componente Counter
+* Validaciones vrules
 * CRUD Dogs
 * Subir vue y vuetify a 3 (ambos)
 * Backend CRUD Dogs

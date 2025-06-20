@@ -40,7 +40,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-data-table :items="dogs" :headers="dogHeaders">
+        <v-data-table :items="dogStore.dogs" :headers="dogHeaders">
           <template v-slot:item.actions="{ item }">
             <v-btn icon color="blue" v-on:click="onClickEdit(item.id)">
               <v-icon>mdi-pencil</v-icon>
@@ -50,6 +50,8 @@
             </v-btn>
           </template>
         </v-data-table>
+
+        <DogCounter/>
       </v-col>
     </v-row>
   </v-container>
@@ -58,17 +60,18 @@
 
 <script>
 
+import DogCounter from '@/components/dogs/DogCounter.vue';
 import { useDogStore } from '@/stores/dogs'
 
 const dogStore = useDogStore();
 
-const dogHeaders = ref([
+const dogHeaders = [
   { title: 'Name', key: 'name', align: 'center' },
   { title: 'Sex', key: 'sex', align: 'center' },
   { title: 'Sterilized', key: 'sterilized', align: 'center' },
   { title: 'Birthdate', key: 'birthdate', align: 'center' },
   { title: 'Actions', key:'actions', align: 'center' },
-])
+];
 
 export default {
   data: () => ({
@@ -78,18 +81,17 @@ export default {
       sterilized:'',
       birthDayFrom:null,
       birthDayTo:null
-    },    
-    dogs: [],
+    },        
+    dogStore:dogStore,
     dogHeaders:dogHeaders
   }), 
   methods: {
     onClickSearch: async function(){        
-        await dogStore.getAllDogs(this.searchFilters);
-        this.dogs = dogStore.dogs;
+        await dogStore.getAllDogs(this.searchFilters);        
       },
     onClickDelete: async function (dogId) {
       await dogStore.deleteDog(dogId);      
-      await this.onClickSearch();
+      await dogStore.getAllDogs(this.searchFilters); 
     },
     onClickNew:function(){
       this.$router.push("/dogs/details");
@@ -99,7 +101,7 @@ export default {
     }
   },
   mounted: function(){
-    
+    this.dogStore.clear();
   }
 }
 </script>

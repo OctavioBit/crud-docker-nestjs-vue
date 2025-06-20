@@ -73,6 +73,10 @@ export const useDogStore = defineStore('dog', {
                 .catch(error => {
                     console.error('Hubo un error:', error);
                 });
+        },
+        async clear(){
+            this.dogs = [];
         }
+
     }
 })
