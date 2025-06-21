@@ -1,0 +1,121 @@
+//Ejemplo con la notacion script setup
+<template>
+  <v-form ref="dogForm" v-model="validDogForm">
+    <v-container>
+      <v-row>
+        <v-col></v-col>
+        <v-col cols="12">
+          <v-row>
+            <v-col>
+              <v-text-field v-model="model.name" label="Name" required :rules="[v => vrules.required(v, 'Name')]">
+              </v-text-field>
+            </v-col>
+            <v-col>
+              <v-select v-model="model.sex" label="Sex" :items="['Male', 'Female']">
+              </v-select>
+            </v-col>
+            <v-col>
+              <v-radio-group label="Sterilized" inline v-model="model.sterilized">
+                <v-radio label="Yes" value="true"></v-radio>
+                <v-radio label="No" value="false"></v-radio>
+              </v-radio-group>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-text-field v-model="model.birthdate" label="Birthday">
+              </v-text-field>
+            </v-col>
+            <v-col></v-col>
+            <v-col></v-col>
+          </v-row>
+        </v-col>
+        <v-col></v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="10"></v-col>
+        <v-col><v-btn text v-on:click="onClickSave">Save</v-btn></v-col>
+        <v-col><v-btn text v-on:click="onClickBack">Back</v-btn></v-col>
+      </v-row>
+    </v-container>
+  </v-form>
+</template>
+
+
+<script setup>
+
+import { useDogStore } from '@/stores/dogs'
+import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { vrules } from '@/validation/rules'
+import { reactive } from 'vue'
+import { ref } from 'vue'
+import { onMounted } from 'vue'
+
+import axios from 'axios'
+
+const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
+const dogStore = useDogStore();
+const router = useRouter();
+const dogForm = ref(null);
+
+//object -> reactive
+const model = reactive({
+  id: null,
+  name: null,
+  sex: null,
+  sterilized: null,
+  birthdate: null
+});
+
+//primitive -> ref                        
+const validDogForm = ref(false);
+
+const onClickSave = async function () {
+
+  dogForm.value.validate();
+  if (!validDogForm)
+    return false;
+
+  if (model.id) {
+    await dogStore.updateDog(model);
+  }
+  else {
+    await dogStore.newDog(model);
+  }
+
+  onClickBack();
+}
+
+const onClickBack = function () {
+  router.push("/dogs/list");
+}
+
+onMounted(() => {
+  const route = useRoute();
+  const dogId = route.query.id;
+
+  if (!dogId)
+    return false;
+
+  axios.get(apiUrl + '/dog/getById?id=' + dogId)
+    .then(res => {
+      console.log(res);
+
+      const { name, sterilized, birthdate, sex } = res.data
+
+      Object.assign(model, {
+        name,
+        sterilized: sterilized + '',
+        birthdate,
+        sex,
+        id: dogId
+      });
+
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+})
+
+</script>

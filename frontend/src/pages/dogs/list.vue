@@ -60,7 +60,6 @@
 
 <script>
 
-import DogCounter from '@/components/dogs/DogCounter.vue';
 import { useDogStore } from '@/stores/dogs'
 
 const dogStore = useDogStore();

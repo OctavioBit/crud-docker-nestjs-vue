@@ -1,5 +1,5 @@
 PENDIENTE
-* Tests automaticos, puede ser con Jest o Vite o eso que tiene vuetify 3 
+* Tests automaticos, puede ser con Jest o Vite o eso que tiene vuetify 3 VITEST
 * Debugger -> https://blog.itaywol.com/dockerizing-nestjs-application-and-debugging
 * Las variables del .env no las toma el archivo schema.prisma
 * Ejecutar estos 3 comandos automaticamente al inicio:
@@ -9,13 +9,14 @@ PENDIENTE
 * ver de que lleguen a los actions DTOs, para evitar parsear
 * poner la url del backend en alguna constante
 * birthdate por rango
-* Notificaciones
 * Dialogs de confirmacion
+* Tema Claro, estetica
 
 EN CURSO
-* Pasar todo a notacion script setup
+* Notificaciones
 
 TERMINADOS
+* Pasar todo a notacion script setup (no aplica a todo, si es simple y corto -> notacion setup, sino options API)
 * axios
 * Componente Counter
 * Validaciones vrules

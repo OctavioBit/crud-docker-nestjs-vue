@@ -104,18 +104,6 @@ export default {
       .catch(function (error) {
         console.log(error);
       })
-/*
-    fetch(apiUrl + '/dog/getById?id=' + dogId)
-      .then(res => {
-        if (!res.ok) throw new Error('Error en la petición');
-        return res.json();
-      })
-      .then(data => { 
-        console.log(data); this.model = data; 
-        this.model.sterilized += '';
-        this.model.id = dogId;
-      })
-      .catch(err => console.error(err)); */
   }
 }
 </script>
