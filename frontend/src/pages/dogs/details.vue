@@ -51,6 +51,7 @@
 import { useDogStore } from '@/stores/dogs'
 import { useRoute } from 'vue-router'
 import { vrules } from '@/validation/rules'
+import axios from 'axios'
 const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
 
 const dogStore = useDogStore();
@@ -94,6 +95,16 @@ export default {
     if (!dogId)
       return false;
 
+    axios.get(apiUrl + '/dog/getById?id=' + dogId)
+      .then(res => {
+        console.log(res);         
+        this.model = res.data;
+        this.model.sterilized += '';
+        this.model.id = dogId; })
+      .catch(function (error) {
+        console.log(error);
+      })
+/*
     fetch(apiUrl + '/dog/getById?id=' + dogId)
       .then(res => {
         if (!res.ok) throw new Error('Error en la petición');
@@ -104,7 +115,7 @@ export default {
         this.model.sterilized += '';
         this.model.id = dogId;
       })
-      .catch(err => console.error(err)); 
+      .catch(err => console.error(err)); */
   }
 }
 </script>

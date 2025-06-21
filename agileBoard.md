@@ -9,12 +9,14 @@ PENDIENTE
 * ver de que lleguen a los actions DTOs, para evitar parsear
 * poner la url del backend en alguna constante
 * birthdate por rango
-
+* Notificaciones
+* Dialogs de confirmacion
 
 EN CURSO
-* axios
+* Pasar todo a notacion script setup
 
 TERMINADOS
+* axios
 * Componente Counter
 * Validaciones vrules
 * CRUD Dogs
