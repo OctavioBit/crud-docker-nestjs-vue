@@ -1,5 +1,5 @@
 # Kamae
-# CRUD example using NodeJS NestJS CQRS MySQL Vue Vite Vuetify Pinia  Docker
+# CRUD example using NodeJS NestJS CQRS MySQL Vue Vite Vuetify Pinia Axios Docker
 
 - CQRS
 - Full Dockerized
