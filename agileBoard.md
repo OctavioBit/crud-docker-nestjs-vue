@@ -9,13 +9,13 @@ PENDIENTE
 * ver de que lleguen a los actions DTOs, para evitar parsear
 * poner la url del backend en alguna constante
 * birthdate por rango
-* Dialogs de confirmacion
 * Tema Claro, estetica
 
 EN CURSO
-* Notificaciones
+* Dialogs de confirmacion
 
 TERMINADOS
+* Notificaciones
 * Pasar todo a notacion script setup (no aplica a todo, si es simple y corto -> notacion setup, sino options API)
 * axios
 * Componente Counter

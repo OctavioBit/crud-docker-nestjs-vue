@@ -13,6 +13,7 @@ declare module 'vue' {
     DogCounter: typeof import('./src/components/dogs/DogCounter.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     ListFilters: typeof import('./src/components/dogs/ListFilters.vue')['default']
+    Notification: typeof import('./src/components/Notification.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -61,8 +61,10 @@
 <script>
 
 import { useDogStore } from '@/stores/dogs'
+import { useNotification } from '@/composables/useNotification';
 
 const dogStore = useDogStore();
+const { showSuccess,showError,showWarning } = useNotification()
 
 const dogHeaders = [
   { title: 'Name', key: 'name', align: 'center' },
@@ -86,6 +88,7 @@ export default {
   }), 
   methods: {
     onClickSearch: async function(){        
+      
         await dogStore.getAllDogs(this.searchFilters);        
       },
     onClickDelete: async function (dogId) {
