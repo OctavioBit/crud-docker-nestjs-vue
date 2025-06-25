@@ -51,10 +51,13 @@
 import { useDogStore } from '@/stores/dogs'
 import { useRoute } from 'vue-router'
 import { vrules } from '@/validation/rules'
+import { useNotification } from '@/composables/useNotification'
 import axios from 'axios'
 const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
 
 const dogStore = useDogStore();
+
+const { showSuccess, showWarning } = useNotification();
 
 export default {
   data: () => ({
@@ -72,15 +75,19 @@ export default {
     onClickSave: async function(){
 
       this.$refs.dogForm.validate();
-      if (!this.validDogForm)
+      if (!this.validDogForm){
+        showWarning("Please check the fields");
         return false;
+      }
 
       if(this.model.id){
-        await dogStore.updateDog(this.model);  
+        await dogStore.updateDog(this.model);        
       }
       else{
         await dogStore.newDog(this.model);  
       }
+
+      showSuccess("Dog saved OK!");
       
       this.onClickBack();
     },

@@ -42,10 +42,10 @@
       <v-col>
         <v-data-table :items="dogStore.dogs" :headers="dogHeaders">
           <template v-slot:item.actions="{ item }">
-            <v-btn icon color="blue" v-on:click="onClickEdit(item.id)">
+            <v-btn icon v-on:click="onClickEdit(item.id)">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn icon color="red" v-on:click="onClickDelete(item.id)">
+            <v-btn icon v-on:click="onClickDelete(item.id)">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </template>
@@ -62,9 +62,11 @@
 
 import { useDogStore } from '@/stores/dogs'
 import { useNotification } from '@/composables/useNotification';
+import { useConfirm } from '@/composables/useConfirm';
 
 const dogStore = useDogStore();
-const { showSuccess,showError,showWarning } = useNotification()
+const { showSuccess } = useNotification();
+const { openConfirm } = useConfirm();
 
 const dogHeaders = [
   { title: 'Name', key: 'name', align: 'center' },
@@ -92,8 +94,15 @@ export default {
         await dogStore.getAllDogs(this.searchFilters);        
       },
     onClickDelete: async function (dogId) {
-      await dogStore.deleteDog(dogId);      
-      await dogStore.getAllDogs(this.searchFilters); 
+
+      //the closure preserves the value of dogId
+      openConfirm("Delete Dog",
+                  "Are you sure you want to delete the dog?", 
+                  async () => {
+                    await dogStore.deleteDog(dogId);
+                    await dogStore.getAllDogs(this.searchFilters); 
+                    showSuccess("Dog deleted OK!");
+                  });
     },
     onClickNew:function(){
       this.$router.push("/dogs/details");

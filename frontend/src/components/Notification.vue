@@ -9,6 +9,6 @@
 
 import { useNotification } from '@/composables/useNotification'
 
-const { show, message , icon, color } = useNotification()
+const { show, message , icon, color } = useNotification();
 
 </script>
