@@ -5,13 +5,13 @@ PENDIENTE
 * ver de que lleguen a los actions DTOs, para evitar parsear
 * poner la url del backend en alguna constante
 * birthdate por rango
-* Formatear fechas
-* Datepicker en las fechas
 * Tema Claro, estetica
 
 EN CURSO
 
 TERMINADOS
+* Formatear fechas
+* Datepicker en las fechas
 * Dialogs de confirmacion
 * Ejecutar estos 3 comandos automaticamente al inicio:
     sudo docker exec -it backendnodecqrs-backend-1 npx prisma generate

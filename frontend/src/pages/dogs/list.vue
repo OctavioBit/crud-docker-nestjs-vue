@@ -22,11 +22,11 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-text-field v-model="searchFilters.birthDayFrom" label="Birthday From">
+            <v-text-field type="date" v-model="searchFilters.birthDayFrom" label="Birthday From">
             </v-text-field>
           </v-col>
           <v-col>
-            <v-text-field v-model="searchFilters.birthDayTo" label="Birthday To"></v-text-field>
+            <v-text-field type="date" v-model="searchFilters.birthDayTo" label="Birthday To"></v-text-field>
           </v-col>
           <v-col></v-col>
         </v-row>
@@ -41,6 +41,17 @@
     <v-row>
       <v-col>
         <v-data-table :items="dogStore.dogs" :headers="dogHeaders">
+          <template v-slot:item.sterilized="{ item }">
+            <v-icon v-if="item.sterilized">
+              mdi-check
+            </v-icon>
+            <v-icon v-else>
+              mdi-close
+            </v-icon>
+          </template>
+          <template v-slot:item.birthdate="{ item }">
+            {{ new Date(item.birthdate).toLocaleDateString('es-AR') }}
+          </template>
           <template v-slot:item.actions="{ item }">
             <v-btn icon v-on:click="onClickEdit(item.id)">
               <v-icon>mdi-pencil</v-icon>
@@ -51,7 +62,7 @@
           </template>
         </v-data-table>
 
-        <DogCounter/>
+        <DogCounter />
       </v-col>
     </v-row>
   </v-container>

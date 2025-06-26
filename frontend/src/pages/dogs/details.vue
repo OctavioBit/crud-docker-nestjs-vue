@@ -27,7 +27,7 @@
           </v-row>
           <v-row>
             <v-col>
-              <v-text-field v-model="model.birthdate" label="Birthday">
+              <v-text-field type="date" v-model="model.birthdate" label="Birthdate">
               </v-text-field>
             </v-col>
             <v-col></v-col>
@@ -107,7 +107,15 @@ export default {
         console.log(res);         
         this.model = res.data;
         this.model.sterilized += '';
-        this.model.id = dogId; })
+        this.model.id = dogId; 
+        
+        const birthDate = new Date(this.model.birthdate);
+        var month = ((birthDate.getMonth() + 1) + "").padStart(2, "0");
+        var day = (birthDate.getDate() + "").padStart(2,"0");
+        var year = birthDate.getFullYear();
+
+        this.model.birthdate = year + "-" + month + "-" + day;
+      })
       .catch(function (error) {
         console.log(error);
       })
