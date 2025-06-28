@@ -3,13 +3,13 @@ PENDIENTE
 * Debugger -> https://blog.itaywol.com/dockerizing-nestjs-application-and-debugging
 * Las variables del .env no las toma el archivo schema.prisma
 * ver de que lleguen a los actions DTOs, para evitar parsear
-* poner la url del backend en alguna constante
 * birthdate por rango
 * Tema Claro, estetica
 
 EN CURSO
 
 TERMINADOS
+* poner la url del backend en alguna constante
 * Formatear fechas
 * Datepicker en las fechas
 * Dialogs de confirmacion

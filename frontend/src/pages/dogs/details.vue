@@ -53,7 +53,7 @@ import { useRoute } from 'vue-router'
 import { vrules } from '@/validation/rules'
 import { useNotification } from '@/composables/useNotification'
 import axios from 'axios'
-const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const dogStore = useDogStore();
 
@@ -102,7 +102,7 @@ export default {
     if (!dogId)
       return false;
 
-    axios.get(apiUrl + '/dog/getById?id=' + dogId)
+    axios.get(backendURL + '/dog/getById?id=' + dogId)
       .then(res => {
         console.log(res);         
         this.model = res.data;

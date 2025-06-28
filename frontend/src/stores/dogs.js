@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-const apiUrl = 'http://172.28.1.2:5000' /*import.meta.env.BACKEND_URL; TODO: No lo toma...*/
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 export const useDogStore = defineStore('dog', {
     state: () => ({
@@ -13,7 +13,7 @@ export const useDogStore = defineStore('dog', {
                 (searchFilters.sex == 'All' ? '' : '&sex=' + searchFilters.sex) +
                 (searchFilters.sterilized ? '&sterilized=' + searchFilters.sterilized : '');
 
-            axios.get(apiUrl + '/dog/getAll?' + filterQuerys)
+            axios.get(backendURL + '/dog/getAll?' + filterQuerys)
                 .then(res => { console.log(res); this.dogs = res.data; })
                 .catch(function (error) {                    
                    console.log(error);
@@ -23,7 +23,7 @@ export const useDogStore = defineStore('dog', {
 
             axios({
                 method: 'post',
-                url: apiUrl + '/dog/newDog',
+                url: backendURL + '/dog/newDog',
                 data: dog
             })
             .then(res => { console.log(res);})
@@ -35,7 +35,7 @@ export const useDogStore = defineStore('dog', {
 
             axios({
                 method: 'post',
-                url: apiUrl + '/dog/deleteDog',
+                url: backendURL + '/dog/deleteDog',
                 data: { id: id }
             })
             .then(res => { console.log(res); })
@@ -47,7 +47,7 @@ export const useDogStore = defineStore('dog', {
 
             axios({
                 method: 'post',
-                url: apiUrl + '/dog/updateDog',
+                url: backendURL + '/dog/updateDog',
                 data: dog
             })
             .then(res => { console.log(res); })
