@@ -1,7 +1,9 @@
+import { DogDTO } from "../dogDTO";
+
 export class UpdateDogCommand {
-    constructor(public readonly id: number,
-                public readonly name: string,
-                public readonly sex: string,
-                public readonly sterilized: boolean,
-                public readonly birthdate: Date) { }
+    constructor(private readonly dogDTO : DogDTO) { }
+
+    getDTO(){
+        return this.dogDTO;
+    }
 }

@@ -6,6 +6,7 @@ import { DogFilters } from './dog.filters';
 import { NewDogCommand } from './commands/newDog.command';
 import { DeleteDogCommand } from './commands/deleteDog.command';
 import { UpdateDogCommand } from './commands/updateDog.command';
+import { DogDTO } from './dogDTO';
 
 @Controller('dog')
 export class DogController {
@@ -35,16 +36,9 @@ export class DogController {
     }
 
     @Post("newDog")
-    async newDog(@Body() dog: {
-                                name: string,
-                                sex: string,
-                                sterilized: string,
-                                birthdate: string
-                            }){
-
-        const {name, sex, sterilized, birthdate} = dog;
-
-        const command = new NewDogCommand(name, sex, sterilized=="true",new Date(birthdate));
+    async newDog(@Body() newDogDTO: DogDTO){
+        
+        const command = new NewDogCommand(newDogDTO);
 
         const newDog = this.commandBus.execute(command);
 
@@ -52,16 +46,9 @@ export class DogController {
     }
 
     @Post("updateDog")
-    async updateDog(@Body() dog: {id: string,
-                                  name: string,
-                                  sex: string,
-                                  sterilized: string,
-                                  birthdate: string
-                                 }) {
-
-        const {id, name, sex, sterilized, birthdate } = dog;
-
-        const command = new UpdateDogCommand( parseInt(id),name, sex, sterilized == "true", new Date(birthdate));
+    async updateDog(@Body() dogDTO: DogDTO) {
+        
+        const command = new UpdateDogCommand(dogDTO);
 
         const updatedDog = this.commandBus.execute(command);
 

@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:227733436mysql@172.28.1.1:3306/kamaebackdb?schema=public&allowPublicKeyRetrieval=true"
+  url      = env("DATABASE_URL")
 }
 
 model Dog {

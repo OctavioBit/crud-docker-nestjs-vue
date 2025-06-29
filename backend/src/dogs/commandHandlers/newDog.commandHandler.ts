@@ -8,9 +8,9 @@ export class NewDogCommandHandler implements ICommandHandler<NewDogCommand> {
 
     async execute(command: NewDogCommand) {
         
-        const { name, sex, sterilized, birthdate } = command;
-        const newDog = { name, sex, sterilized, birthdate };
-
+        // sterilized and other props are boolean, ints, etc but reaches as strings...
+        const { name, sex, sterilized, birthdate } = command.getDTO();  
+        const newDog = { name: name, sex: sex, sterilized: String(sterilized) == 'true', birthdate: new Date(String(birthdate)) };
         const dog = await this.shapeShifterService.new('dog', newDog);
 
         return dog;
