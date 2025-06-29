@@ -11,7 +11,9 @@ export const useDogStore = defineStore('dog', {
 
             const filterQuerys = (searchFilters.name ? 'name=' + searchFilters.name : '') +
                 (searchFilters.sex == 'All' ? '' : '&sex=' + searchFilters.sex) +
-                (searchFilters.sterilized ? '&sterilized=' + searchFilters.sterilized : '');
+                (searchFilters.sterilized ? '&sterilized=' + searchFilters.sterilized : '') + 
+                (searchFilters.birthdateFrom ? '&birthdateFrom=' + searchFilters.birthdateFrom : '')+
+                (searchFilters.birthdateTo ? '&birthdateTo=' + searchFilters.birthdateTo : '');
 
             axios.get(backendURL + '/dog/getAll?' + filterQuerys)
                 .then(res => { console.log(res); this.dogs = res.data; })

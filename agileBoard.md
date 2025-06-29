@@ -1,14 +1,14 @@
 PENDIENTE
 * Tests automaticos, puede ser con Jest o Vite o eso que tiene vuetify 3 VITEST
 * Debugger -> https://blog.itaywol.com/dockerizing-nestjs-application-and-debugging
-* Las variables del .env no las toma el archivo schema.prisma
 * ver de que lleguen a los actions DTOs, para evitar parsear
-* birthdate por rango
 * Tema Claro, estetica
 
 EN CURSO
+* Las variables del .env no las toma el archivo schema.prisma
 
 TERMINADOS
+* birthdate por rango
 * poner la url del backend en alguna constante
 * Formatear fechas
 * Datepicker en las fechas

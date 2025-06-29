@@ -9,14 +9,19 @@ export class GetAllDogsQueryHandler implements IQueryHandler<GetAllDogsQuery> {
 
     async execute(query: GetAllDogsQuery) {
         
-        const { name, sex, sterilized, birthdate } = query.getFilters();
-
+        const { name, sex, sterilized, birthdateFrom , birthdateTo } = query.getFilters();
+                
         const filters = {
                             name: name ? { contains: name } : undefined,
                             sex: sex ? { equals: sex } : undefined,
                             sterilized: sterilized !== undefined ? sterilized === 'true' : undefined,
-                            birthdate: birthdate ? new Date(birthdate) : undefined,
+                            birthdate: {}                            
                         };
+
+        if(birthdateFrom || birthdateTo){
+            filters.birthdate = {...(birthdateFrom && { gte: new Date(birthdateFrom) }),
+                                 ...(  birthdateTo && { lte: new Date(birthdateTo)   }) };
+        }
 
         const dogs = await this.shapeShifterService.getAll("dog", filters);
         

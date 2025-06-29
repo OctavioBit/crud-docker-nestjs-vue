@@ -9,14 +9,23 @@ export class DogRepository {
 
     async getAll(filters: DogFilters): Promise<Dog[]> {
 
-        const { name, sex, sterilized, birthdate } = filters;
-
+        const { name, sex, sterilized, birthdateFrom, birthdateTo } = filters;
+/*
+        const birthdateFilter =
+            birthdateFrom || birthdateTo
+                ? {
+                    birthdate: {
+                        ...(birthdateFrom && { gte: birthdateFrom }),
+                        ...(birthdateTo && { lte: birthdateTo }),
+                    },
+                }
+                : {};
+*/
         const dogs = await prisma["dog"].findMany({
             where: {
                 name: name ? { contains: name } : undefined,
                 sex: sex ? { equals: sex } : undefined,
-                sterilized: sterilized !== undefined ? sterilized === 'true' : undefined,
-                birthdate: birthdate ? new Date(birthdate) : undefined,
+                sterilized: sterilized !== undefined ? sterilized === 'true' : undefined
             },
         });
 

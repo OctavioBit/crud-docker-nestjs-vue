@@ -22,11 +22,11 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-text-field type="date" v-model="searchFilters.birthDayFrom" label="Birthday From">
+            <v-text-field type="date" v-model="searchFilters.birthdateFrom" label="Birthday From">
             </v-text-field>
           </v-col>
           <v-col>
-            <v-text-field type="date" v-model="searchFilters.birthDayTo" label="Birthday To"></v-text-field>
+            <v-text-field type="date" v-model="searchFilters.birthdateTo" label="Birthday To"></v-text-field>
           </v-col>
           <v-col></v-col>
         </v-row>
@@ -93,8 +93,8 @@ export default {
       name:null,
       sex:'All',
       sterilized:'',
-      birthDayFrom:null,
-      birthDayTo:null
+      birthdateFrom:null,
+      birthdateTo:null
     },        
     dogStore:dogStore,
     dogHeaders:dogHeaders

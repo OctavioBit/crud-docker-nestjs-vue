@@ -15,5 +15,9 @@ export class DogFilters {
 
     @IsOptional()
     @IsDateString()
-    birthdate?: string;
+    birthdateFrom?: string;
+
+    @IsOptional()
+    @IsDateString()
+    birthdateTo?: string;
 }
