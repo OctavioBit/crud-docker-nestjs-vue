@@ -1,13 +1,13 @@
 PENDIENTE
 * Tests automaticos, puede ser con Jest o Vite o eso que tiene vuetify 3 VITEST
 * Debugger -> https://blog.itaywol.com/dockerizing-nestjs-application-and-debugging
-* Tema Claro, estetica
 * Pulido final
 
 EN CURSO
-* ver de que lleguen a los actions DTOs, para evitar parsear
+* Tema Claro, estetica
 
 TERMINADOS
+* ver de que lleguen a los actions DTOs, para evitar parsear
 * Las variables del .env no las toma el archivo schema.prisma
 * birthdate por rango
 * poner la url del backend en alguna constante

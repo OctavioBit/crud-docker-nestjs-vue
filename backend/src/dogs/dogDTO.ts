@@ -4,7 +4,7 @@ export class DogDTO {
 
   @IsOptional()
   @IsInt()
-  id: number
+  id: number;
 
   @IsString()
   @IsNotEmpty()
@@ -13,10 +13,10 @@ export class DogDTO {
   @Max(1)
   @IsString()
   sex: string;
-
-  @IsBoolean()  
+  
+  @IsBoolean()
   sterilized: boolean;
 
   @IsDate()
-  birthdate: Date
+  birthdate: Date;
 }
