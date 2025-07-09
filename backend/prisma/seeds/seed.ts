@@ -7,22 +7,22 @@ async function main() {
   await prisma.dog.createMany({
     data: [
       {
-        name: 'Max',
+        name: 'Rito',
         sex: 'Male',
-        sterilized: true,
-        birthdate: new Date('2020-01-15'),
-      },
-      {
-        name: 'Bella',
-        sex: 'Female',
         sterilized: false,
-        birthdate: new Date('2019-05-23'),
+        birthdate: new Date('1991-04-11'),
       },
       {
-        name: 'Rocky',
+        name: 'Broly',
         sex: 'Male',
         sterilized: true,
-        birthdate: new Date('2018-08-10'),
+        birthdate: new Date('2008-02-11'),
+      },
+      {
+        name: 'Coco',
+        sex: 'Male',
+        sterilized: true,
+        birthdate: new Date('2015-11-11'),
       },
     ],
   })

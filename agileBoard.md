@@ -3,9 +3,9 @@ PENDIENTE
 * Debugger -> https://blog.itaywol.com/dockerizing-nestjs-application-and-debugging
 
 EN CURSO
-* Pulido final
 
 TERMINADOS
+* Pulido final
 * Tema Claro, estetica
 * ver de que lleguen a los actions DTOs, para evitar parsear
 * Las variables del .env no las toma el archivo schema.prisma

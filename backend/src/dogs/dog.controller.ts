@@ -1,4 +1,4 @@
-import { Controller,Get, Post, Query, ParseIntPipe, Body, ParseBoolPipe } from '@nestjs/common';
+import { Controller,Get, Post, Query, ParseIntPipe, Body } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { GetAllDogsQuery } from './querys/getAllDogs.query';
 import { GetByIdDogQuery } from './querys/getByIdDog.query';
