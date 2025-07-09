@@ -5,7 +5,7 @@
 - Full Dockerized
 - A Service layer that transform itself to handle an entity when it ~~sees it~~ passed by parameter 
 - Technologies: NodeJS NestJS CQRS MySQL Vue Vite Vuetify Pinia Axios Docker
-- Disclamer: I know that using a store for a CRUD is maybe too much, but I just one to try it :-)
+- Disclamer: I know that using a store for a CRUD is maybe too much, but I just want to try it :-)
 
 # Installation
 
