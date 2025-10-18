@@ -4,7 +4,7 @@
 - CQRS
 - Full Dockerized
 - A Service layer that transform itself to handle an entity when it ~~sees it~~ passed by parameter 
-- Technologies: NodeJS NestJS CQRS MySQL Vue Vite Vuetify Pinia Axios Docker
+- Technologies: NodeJS NestJS CQRS MySQL Vue Vite Vuetify Pinia Axios Docker Github Actions
 - Disclamer: I know that using a store for a CRUD is maybe too much, but I just want to try it :-)
 
 # Installation
